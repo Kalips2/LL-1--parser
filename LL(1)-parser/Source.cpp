@@ -790,11 +790,12 @@ public:
     }
 
     void analyze_w_with_out(const vector<string>& w, int k, string filename) {
-        if(k != 1) {
-            analyzer_k_larger_than_1(w, k, filename);
-        }
-        else {
-            analyzer_for_k_1(w, k, filename);
+        if (leftRecursive.empty()) {
+            if (k != 1) {
+                analyzer_k_larger_than_1(w, k, filename);
+            } else {
+                analyzer_for_k_1(w, k, filename);
+            }
         }
     }
 
@@ -851,7 +852,7 @@ public:
                         map<int, T> position_to_T = cell.getPositionOfTToReference();
                         new_items.push_back(*new StackItem(position_to_T[i].getNumberOfRule()));
                     } else {
-                        new_items.push_back(*new StackItem(to_replace[i]));
+                        if(to_replace[i] != "eps")  new_items.push_back(*new StackItem(to_replace[i]));
                     }
                 }
 
@@ -867,9 +868,13 @@ public:
                 if (!current_lexeme.empty() && current_lexeme[0] == lexeme_on_head) {
                     current_lexeme.erase(current_lexeme.begin());
                 } else {
-                    file << "Error! " << "lexeme - " << vector_to_string(current_lexeme, true)
-                         << ", head of stack - " << item.getItem() << endl;
-                    file <<" Pi chain before error - ";
+                    string err_message = "Lexeme is " + vector_to_string(current_lexeme, true) + ", head of stack - " + item.getItem() + "\n";
+                    if(current_lexeme.empty()) {
+                        err_message = "Lexeme is empty, but stack doesn't!\n";
+                    }
+
+                    file << err_message;
+                    file <<"Pi chain before error - ";
                     err_find = true;
                 }
             }
@@ -893,7 +898,7 @@ public:
             file << to_string(item) << " ";
         }
 
-        file << endl;
+        file << endl << endl;
         file.close();
     }
 
@@ -960,8 +965,13 @@ public:
                 if (!current_lexeme.empty() && current_lexeme[0] == item) {
                     current_lexeme.erase(current_lexeme.begin());
                 } else {
-                    file << "Error! " << "Your lexeme - " << vector_to_string(current_lexeme, true) << ", but from " << item << " any transitions with your lexeme! " << endl;
-                    file << item << " in current step except only " << vector_to_string(find_expecting_terminals(item), true);
+                    if (current_lexeme.empty())
+                        file << "Lexeme is empty, but stack doesn't!\n";
+                    else {
+                        file << "Error! " << "Your lexeme - " << vector_to_string(current_lexeme, true) << ", but from " << item << " any transitions with your lexeme! " << endl;
+                        file << item << " in current step except only " << vector_to_string(find_expecting_terminals(item), true);
+                    }
+
                     file <<" Pi chain before error - ";
                     err_find = true;
                 }
@@ -1326,10 +1336,12 @@ public:
 
     //follow_k sets output to the file
     void table_of_control_out_file(const string& filename, bool spaces, int k) {
-        if( k!= 1) {
-            table_of_control_k_larger_1_out_file(filename, spaces);
-        } else {
-            table_of_control_out_for_k_1(filename, spaces);
+        if (leftRecursive.empty()) {
+            if( k!= 1) {
+                table_of_control_k_larger_1_out_file(filename, spaces);
+            } else {
+                table_of_control_out_for_k_1(filename, spaces);
+            }
         }
     }
 
@@ -1485,7 +1497,7 @@ public:
 			else file << x;
 			++size;
 		}
-		file << "}";
+		file << "}" << endl << endl;
 		file.close();
 	}
 };
@@ -1509,15 +1521,14 @@ int main() {
     grammar.first_k_out_file(output_file,false);
     grammar.build_follow_k(k);
     grammar.follow_k_out_file(output_file,false);
+    grammar.epsilon_non_term();
+    grammar.epsilon_out_file(output_file);
+    grammar.leftRecursive_get();
+    grammar.left_recursive_out_file(output_file);
     grammar.build_local_k(k);
     grammar.local_k_out_file(output_file, false);
     grammar.order_rules_out_file(output_file, false);
     grammar.build_table_of_control(k);
     grammar.table_of_control_out_file(output_file, false, k);
     grammar.analyze_w_with_out(w, k, output_file);
-    grammar.epsilon_non_term();
-    grammar.epsilon_out_file(output_file);
-    out_k(output_file, k);
-	grammar.leftRecursive_get();
-	grammar.left_recursive_out_file(output_file);
 }

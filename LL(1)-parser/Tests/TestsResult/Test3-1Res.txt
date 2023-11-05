@@ -1,0 +1,585 @@
+First_k for no terminals:
+S: {abd, cd, cde, ea, efa, eff}
+A: {ab, c}
+B: {d, de, dee}
+C: {e, ee, eee, eps}
+D: {eps, f, ff, fff}
+
+Follow_k for no terminals:
+S: {eps}
+A: {d, de, dee}
+B: {eps}
+C: {eps}
+D: {a}
+
+Local_k for no terminals:
+S: { { eps } }
+A: { { d, de, dee } }
+B: { { eps } }
+C: { { eps } }
+D: { { a } }
+
+Order rules for our grammar:
+S -> A B 		(1)
+S -> e D a 		(2)
+A -> a b 		(3)
+A -> c 		(4)
+B -> d C 		(5)
+C -> e C 		(6)
+C -> eps 		(7)
+D -> f D 		(8)
+D -> eps 		(9)
+
+Table of control for LL(k) k > 1
+Combination: a
+T_3: eps  ; rule - 9
+
+Combination: aa
+
+Combination: aaa
+
+Combination: aab
+
+Combination: aac
+
+Combination: aad
+
+Combination: aae
+
+Combination: aaf
+
+Combination: ab
+
+Combination: aba
+
+Combination: abb
+
+Combination: abc
+
+Combination: abd
+T_0: T_1 T_2  ; rule - 1
+T_1: a b  ; rule - 3
+
+Combination: abe
+
+Combination: abf
+
+Combination: ac
+
+Combination: aca
+
+Combination: acb
+
+Combination: acc
+
+Combination: acd
+
+Combination: ace
+
+Combination: acf
+
+Combination: ad
+
+Combination: ada
+
+Combination: adb
+
+Combination: adc
+
+Combination: add
+
+Combination: ade
+
+Combination: adf
+
+Combination: ae
+
+Combination: aea
+
+Combination: aeb
+
+Combination: aec
+
+Combination: aed
+
+Combination: aee
+
+Combination: aef
+
+Combination: af
+
+Combination: afa
+
+Combination: afb
+
+Combination: afc
+
+Combination: afd
+
+Combination: afe
+
+Combination: aff
+
+Combination: b
+
+Combination: ba
+
+Combination: baa
+
+Combination: bab
+
+Combination: bac
+
+Combination: bad
+
+Combination: bae
+
+Combination: baf
+
+Combination: bb
+
+Combination: bba
+
+Combination: bbb
+
+Combination: bbc
+
+Combination: bbd
+
+Combination: bbe
+
+Combination: bbf
+
+Combination: bc
+
+Combination: bca
+
+Combination: bcb
+
+Combination: bcc
+
+Combination: bcd
+
+Combination: bce
+
+Combination: bcf
+
+Combination: bd
+
+Combination: bda
+
+Combination: bdb
+
+Combination: bdc
+
+Combination: bdd
+
+Combination: bde
+
+Combination: bdf
+
+Combination: be
+
+Combination: bea
+
+Combination: beb
+
+Combination: bec
+
+Combination: bed
+
+Combination: bee
+
+Combination: bef
+
+Combination: bf
+
+Combination: bfa
+
+Combination: bfb
+
+Combination: bfc
+
+Combination: bfd
+
+Combination: bfe
+
+Combination: bff
+
+Combination: c
+
+Combination: ca
+
+Combination: caa
+
+Combination: cab
+
+Combination: cac
+
+Combination: cad
+
+Combination: cae
+
+Combination: caf
+
+Combination: cb
+
+Combination: cba
+
+Combination: cbb
+
+Combination: cbc
+
+Combination: cbd
+
+Combination: cbe
+
+Combination: cbf
+
+Combination: cc
+
+Combination: cca
+
+Combination: ccb
+
+Combination: ccc
+
+Combination: ccd
+
+Combination: cce
+
+Combination: ccf
+
+Combination: cd
+T_0: T_1 T_2  ; rule - 1
+T_1: c  ; rule - 4
+
+Combination: cda
+
+Combination: cdb
+
+Combination: cdc
+
+Combination: cdd
+
+Combination: cde
+T_0: T_1 T_2  ; rule - 1
+T_1: c  ; rule - 4
+
+Combination: cdf
+
+Combination: ce
+
+Combination: cea
+
+Combination: ceb
+
+Combination: cec
+
+Combination: ced
+
+Combination: cee
+
+Combination: cef
+
+Combination: cf
+
+Combination: cfa
+
+Combination: cfb
+
+Combination: cfc
+
+Combination: cfd
+
+Combination: cfe
+
+Combination: cff
+
+Combination: d
+T_2: d T_4  ; rule - 5
+
+Combination: da
+
+Combination: daa
+
+Combination: dab
+
+Combination: dac
+
+Combination: dad
+
+Combination: dae
+
+Combination: daf
+
+Combination: db
+
+Combination: dba
+
+Combination: dbb
+
+Combination: dbc
+
+Combination: dbd
+
+Combination: dbe
+
+Combination: dbf
+
+Combination: dc
+
+Combination: dca
+
+Combination: dcb
+
+Combination: dcc
+
+Combination: dcd
+
+Combination: dce
+
+Combination: dcf
+
+Combination: dd
+
+Combination: dda
+
+Combination: ddb
+
+Combination: ddc
+
+Combination: ddd
+
+Combination: dde
+
+Combination: ddf
+
+Combination: de
+T_2: d T_4  ; rule - 5
+
+Combination: dea
+
+Combination: deb
+
+Combination: dec
+
+Combination: ded
+
+Combination: dee
+T_2: d T_4  ; rule - 5
+
+Combination: def
+
+Combination: df
+
+Combination: dfa
+
+Combination: dfb
+
+Combination: dfc
+
+Combination: dfd
+
+Combination: dfe
+
+Combination: dff
+
+Combination: e
+
+Combination: ea
+T_0: e T_3 a  ; rule - 2
+
+Combination: eaa
+
+Combination: eab
+
+Combination: eac
+
+Combination: ead
+
+Combination: eae
+
+Combination: eaf
+
+Combination: eb
+
+Combination: eba
+
+Combination: ebb
+
+Combination: ebc
+
+Combination: ebd
+
+Combination: ebe
+
+Combination: ebf
+
+Combination: ec
+
+Combination: eca
+
+Combination: ecb
+
+Combination: ecc
+
+Combination: ecd
+
+Combination: ece
+
+Combination: ecf
+
+Combination: ed
+
+Combination: eda
+
+Combination: edb
+
+Combination: edc
+
+Combination: edd
+
+Combination: ede
+
+Combination: edf
+
+Combination: ee
+
+Combination: eea
+
+Combination: eeb
+
+Combination: eec
+
+Combination: eed
+
+Combination: eee
+
+Combination: eef
+
+Combination: ef
+
+Combination: efa
+T_0: e T_3 a  ; rule - 2
+
+Combination: efb
+
+Combination: efc
+
+Combination: efd
+
+Combination: efe
+
+Combination: eff
+T_0: e T_3 a  ; rule - 2
+
+Combination: eps
+
+Combination: f
+
+Combination: fa
+T_3: f T_3  ; rule - 8
+
+Combination: faa
+
+Combination: fab
+
+Combination: fac
+
+Combination: fad
+
+Combination: fae
+
+Combination: faf
+
+Combination: fb
+
+Combination: fba
+
+Combination: fbb
+
+Combination: fbc
+
+Combination: fbd
+
+Combination: fbe
+
+Combination: fbf
+
+Combination: fc
+
+Combination: fca
+
+Combination: fcb
+
+Combination: fcc
+
+Combination: fcd
+
+Combination: fce
+
+Combination: fcf
+
+Combination: fd
+
+Combination: fda
+
+Combination: fdb
+
+Combination: fdc
+
+Combination: fdd
+
+Combination: fde
+
+Combination: fdf
+
+Combination: fe
+
+Combination: fea
+
+Combination: feb
+
+Combination: fec
+
+Combination: fed
+
+Combination: fee
+
+Combination: fef
+
+Combination: ff
+
+Combination: ffa
+T_3: f T_3  ; rule - 8
+
+Combination: ffb
+
+Combination: ffc
+
+Combination: ffd
+
+Combination: ffe
+
+Combination: fff
+T_3: f T_3  ; rule - 8
+
+LL(3) analyzer started for e f f f a
+Stack: T_0  Current lexeme: e f f
+Stack: a T_3 e  Current lexeme: e f f
+Stack: a T_3  Current lexeme: f f f
+Stack: a T_3 f  Current lexeme: f f f
+Stack: a T_3  Current lexeme: f f a
+Stack: a T_3 f  Current lexeme: f f a
+Stack: a T_3  Current lexeme: f a
+Stack: a T_3 f  Current lexeme: f a
+Stack: a T_3  Current lexeme: a
+Stack: a  Current lexeme: a
+Stack: (empty) Current lexeme:
+Successfully parsed: Pi chain is - 2 8 8 8 9
+
+epsilon non-terminals: {C, D}
+
+k = 3
+left-recursive non-terminals: {}

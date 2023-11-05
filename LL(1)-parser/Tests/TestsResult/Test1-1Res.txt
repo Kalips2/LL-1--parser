@@ -1,0 +1,88 @@
+First_k for no terminals:
+S: {(, a}
+A: {+, eps}
+B: {(, a}
+C: {*, eps}
+D: {(, a}
+
+Follow_k for no terminals:
+S: {), eps}
+A: {), eps}
+B: {), +, eps}
+C: {), +, eps}
+D: {), *, +, eps}
+
+Local_k for no terminals:
+S: { { ) }, { eps } }
+A: { { ) }, { eps } }
+B: { { ), + }, { +, eps } }
+C: { { ), + }, { +, eps } }
+D: { { ), *, + }, { *, +, eps } }
+
+Order rules for our grammar:
+S -> B A 		(1)
+A -> + B A 		(2)
+A -> eps 		(3)
+B -> D C 		(4)
+C -> * D C 		(5)
+C -> eps 		(6)
+D -> ( S ) 		(7)
+D -> a 		(8)
+
+Table of control for LL(1)
+Terminal: (
+B - 4
+D - 7
+S - 1
+
+Terminal: )
+A - 3
+C - 6
+
+Terminal: *
+C - 5
+
+Terminal: +
+A - 2
+C - 6
+
+Terminal: a
+B - 4
+D - 8
+S - 1
+
+Terminal: eps
+A - 3
+C - 6
+
+LL(1) analyzer started for ( a + a ) * a
+Stack: S  Current lexeme: (
+Stack: B A  Current lexeme: (
+Stack: D C A  Current lexeme: (
+Stack: ( S ) C A  Current lexeme: (
+Stack: S ) C A  Current lexeme: a
+Stack: B A ) C A  Current lexeme: a
+Stack: D C A ) C A  Current lexeme: a
+Stack: a C A ) C A  Current lexeme: a
+Stack: C A ) C A  Current lexeme: +
+Stack: A ) C A  Current lexeme: +
+Stack: + B A ) C A  Current lexeme: +
+Stack: B A ) C A  Current lexeme: a
+Stack: D C A ) C A  Current lexeme: a
+Stack: a C A ) C A  Current lexeme: a
+Stack: C A ) C A  Current lexeme: )
+Stack: A ) C A  Current lexeme: )
+Stack: ) C A  Current lexeme: )
+Stack: C A  Current lexeme: *
+Stack: * D C A  Current lexeme: *
+Stack: D C A  Current lexeme: a
+Stack: a C A  Current lexeme: a
+Stack: C A  Current lexeme:
+Stack: A  Current lexeme:
+Stack: (empty) Current lexeme:
+Successfully parsed: Pi chain is - 1 4 7 1 4 8 6 2 4 8 6 3 5 8 6 3
+
+epsilon non-terminals: {A, C}
+
+k = 1
+left-recursive non-terminals: {}
